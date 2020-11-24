@@ -1,0 +1,22 @@
+<button (click)="click$.next()" cdkOverlayOrigin #toggleButton="cdkOverlayOrigin">
+  Open
+</button>
+
+<div class="container" #boundary>
+  <div class="box" cdkDrag [cdkDragBoundary]="boundary"></div>
+</div>
+
+<mat-card>
+  Somethinelse
+</mat-card>
+
+<ng-template
+  cdkConnectedOverlay
+  [cdkConnectedOverlayOrigin]="toggleButton"
+  [cdkConnectedOverlayOpen]="isOpen$ | async"
+  (overlayOutsideClick)="$event.stopImmediatePropagation(); click$.next()"
+>
+  <div class="box2">
+    Something cool!
+  </div>
+</ng-template>
